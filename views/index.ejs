@@ -9,6 +9,15 @@
 <body>
 
     <h1>See all the Pokemon!</h1>
+
+    <ul>
+        <% data.map((pokemon, index) =>{ %>
+            <li> 
+                <%= pokemon.name[0].toUpperCase() +pokemon.name.slice(1) %>
+                
+            </li>
+      <%  }) %> 
+    </ul> 
     
 </body>
 </html>
