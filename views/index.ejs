@@ -14,7 +14,8 @@
         <% data.map((pokemon, index) =>{ %>
             <li> 
                 <%= pokemon.name[0].toUpperCase() +pokemon.name.slice(1) %>
-                <a href="/pokemon/ <%= index %>">Click hee</a>
+                <a href="/pokemon/ <%= index %>">click here</a>
+                <img src =  <%=` ${pokemon.img}.jpg` %>  width ="400" height="300" >
             </li>
       <%  }) %> 
     </ul> 
