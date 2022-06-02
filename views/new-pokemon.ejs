@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= pageHeader %></title>
+    <title><%= pageHeader %><</title>
 </head>
 <body>
-
     <h1><%= pageHeader %></h1>
-    <a href="/pokemon/new">back</a>
-    <h2><%= pokemon[index].name.charAt(0).toUpperCase() + pokemon[index].name.slice(1) %></h2>
-    <img src =  <%=` ${pokemon[index].img}.jpg` %>  width ="400" height="300" >
-    
+    <form action="/pokemon"  method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name"/>
+        <input type="submit" value="Create Pokemon"/>
+        
+    </form>
     <a href="/pokemon">back</a>
 </body>
-</html> 
+</html>

@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= pageTitle %></title>
 </head>
 <body>
 
-    <h1>See all the Pokemon!</h1>
-
+    <h1><%= pageHeader %></h1>
+    <a href="/pokemon/new">Create New Pokemon</a>
     <ul>
-        <% data.map((pokemon, index) =>{ %>
+        <% pokemon.map((pokemon, index) =>{ %>
             <li> 
                 <%= pokemon.name[0].toUpperCase() +pokemon.name.slice(1) %>
-                <a href="/pokemon/ <%= index %>">click here</a>
                 <img src =  <%=` ${pokemon.img}.jpg` %>  width ="400" height="300" >
+                <a href="/pokemon/ <%= index %>">click here</a>
             </li>
+            
       <%  }) %> 
     </ul> 
     
