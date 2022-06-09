@@ -15,7 +15,7 @@
             <li> 
                 <%= pokemon.name[0].toUpperCase() +pokemon.name.slice(1) %>
                 <img src =  <%=` ${pokemon.img}.jpg` %>  width ="400" height="300" >
-                <a href="/pokemon/ <%= index %>">click here</a>
+                <a href="/pokemon/ <%= pokemon._id %>">click here</a>
             </li>
             
       <%  }) %> 

@@ -34,13 +34,26 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Pokemon App!')
 })
 
-app.get('/pokemon', (req, res) => {
-    res.render('index', {
-        pageTitle: 'Pokemon',
-        pageHeader: 'See All The Pokemon!',
-        pokemon: pokemon
+app.get('/pokemon', async(req, res) => {
+
+    try{
+    //fetch data fom the db
+    const pokemons = await PokemonModel.find()
+    // console.log(pokemons)
+    // console.log(pokemons.forEach(pokemon => console.log(pokemon_id)))
+        
+        res.render('index', {
+            pageTitle: 'Pokemon',
+            pageHeader: 'See All The Pokemon!',
+            pokemon: pokemons
+            
+        })
+    } catch(error){
+        console.log(error)
+    }
     })
-})
+
+    
 
 app.get('/pokemon/new', (req, res) => {
     res.render('new-pokemon', {
@@ -56,7 +69,7 @@ app.post('/pokemon', async(req, res) => {
         const newPokemon = req.body//create newPokemon variable
         //add a img property to the object
         console.log('newPokemon=',newPokemon)
-        newPokemon.img = `http://img.pokemondb.net/artwork/${req.body.name}`
+        newPokemon.img = `http://img.pokemondb.net/artwork/${req.body.name.toLowerCase()}`
        console.log(newPokemon)
         // pokemon.push(req.body)
         // res.redirect('/pokemon')
@@ -64,24 +77,33 @@ app.post('/pokemon', async(req, res) => {
             if (error){
                 console.log(error)
             }
+           
             console.log(result)
         })
-        res.send('done')
+        //More stuff
+        // res.send('done')
+        res.redirect('/pokemon')
     })
 
-app.get('/pokemon/:id', (req, res) => {
+app.get('/pokemon/:id', async(req, res) => {
     // res.send(req.params.id)
 
-    res.render('show', {
-        pageTitle: 'Details',
-        pageHeader: " Gotta Catch 'Em All ",
-        index:Number(req.params.id),
-        pokemon:pokemon,
+    try{
+        const pokemon= await PokemonModel.findById(req.params.id)
+        res.render('show', {
+            pageTitle: 'Details',
+            pageHeader: " Gotta Catch 'Em All ",
+            // index:Number(req.params.id),
+            pokemon:pokemon
+        })
+    }catch (error){
+        console.log(error)
+    }
         // index:pokemon[req.params.id]
         
         // pokemon: pokemon[req.params.id]
     })
-})
+
 // app.get('/pokemon', (req, res) => {
 //     res.render('index', {data: pokemon})
 // })
